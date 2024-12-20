@@ -1,4 +1,5 @@
 from data.data_source import DataSource
+from logic.models.grammer import Grammer
 
 
 class FileDataSource(DataSource):
@@ -9,6 +10,10 @@ class FileDataSource(DataSource):
     def read(self):
         with open(self.inPath, "r") as f:
             return f.read()
+        
+    def readGrammer(self):
+        with open(self.inPath, "r") as f:
+            return Grammer.fromString(f.read())
 
     def write(self, data):
         with open(self.outPath, "w") as f:
