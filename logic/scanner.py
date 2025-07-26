@@ -9,7 +9,7 @@ class Scanner:
         ('IDENTIFIER', r'[a-zA-Z_]\w*'),
         ('NUMBER', r'\b\d+(\.\d*)?([eE][+-]?\d+)?\b'),
         ('OPERATOR', r'[+\-*/%=&|<>!]=?|&&|\|\|'),
-        ('SPECIAL_CHARACTER', r'[{}()\[\],;<>]'),        
+        ('SPECIAL_CHARACTER', r'[{}()\[\],;<>]'),
         ('STRING', r'"(\\.|[^"\\])*"'),
         ('CHAR', r"\'(\\.|[^'\\])\'"),
         ('PREPROCESSOR', r'#\s*(?:include|define)\b.*'),
@@ -39,6 +39,9 @@ class Scanner:
         # scan each line
         for line in data:
             self.scan(self.removeInlineComments(line))
+
+        # add to output
+        self.dataSource.write("\n".join(str(token) for token in self.tokens))
 
     def scan(self,data):
         data = data.strip()
