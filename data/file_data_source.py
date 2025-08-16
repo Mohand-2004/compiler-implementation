@@ -3,9 +3,9 @@ from logic.models.grammer import Grammer
 
 
 class FileDataSource(DataSource):
-    def __init__(self,intputPath,outputPath = None):
-        self.inPath = intputPath
-        self.outPath = self.inPath if outputPath is None else outputPath
+    def __init__(self,inPath,outPath = None):
+        self.inPath = inPath
+        self.outPath = self.inPath if outPath is None else outPath
         super().__init__()
     def read(self):
         with open(self.inPath, "r") as f:
